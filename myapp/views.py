@@ -8,3 +8,4 @@ def todo(request):
 
 def add_todo(request):
     return render(request, "add_todo.html")
+
