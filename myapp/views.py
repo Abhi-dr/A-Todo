@@ -2,18 +2,43 @@ from django.shortcuts import render
 
 from .models import Todo
 
-def home(request):
-    
-    result = Todo.objects.all()
-    
-    for object in result:
-        print(object.task)
-    
-    
+def home(request):    
     return render(request, "home.html")
 
+
+
+
+
+
+
+
+
+
+
 def todo(request):
-    return render(request, "todo.html")
+    
+    todos = Todo.objects.all()
+    
+    parameters = {
+        "todos": todos,
+        "name": "This is DK"
+    }
+    
+    return render(request, "todo.html", parameters)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def add_todo(request):
     return render(request, "add_todo.html")
