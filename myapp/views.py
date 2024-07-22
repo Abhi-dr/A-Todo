@@ -21,7 +21,6 @@ def todo(request):
     
     parameters = {
         "todos": todos,
-        "name": "This is DK"
     }
     
     return render(request, "todo.html", parameters)
