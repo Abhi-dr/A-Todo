@@ -1,19 +1,12 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from .models import Todo
+
+# =================================== VIEWS HERE =========================
 
 def home(request):    
     return render(request, "home.html")
 
-
-
-
-
-
-
-
-
-
+# ====================================== TODO =========================================
 
 def todo(request):
     
@@ -25,54 +18,21 @@ def todo(request):
     
     return render(request, "todo.html", parameters)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# ===================================== ADD TODO =======================================
 
 def add_todo(request):
+    
+    if request.method == "POST":
+        
+        # Template s view m data la rha hu
+        user_task = request.POST.get("task")
+        user_created_at = request.POST.get("created_at")
+        
+        # View vala data model m save kr rha hu
+        new_todo = Todo(task=user_task, created_at=user_created_at)
+        new_todo.save()
+        
+        return redirect("todo")
+        
     return render(request, "add_todo.html")
 
-
-
-'''
-Django models m hr ek class k kuch methods mujhe phle s milue hue hn
-
-jse ki?
-
-1. objects.all()
-
-Todo.objects.all()
-
-'''
-
-
-
-
-'''
-Todo ek class h
-Todo m m objects create kr pa rha hu
-Todo m objects ko modify bhi kia ja skta h
-
-Todo ek Mutable data rkh rkha h?
-
-Todo.objects.all() ka return data type kya hoga
-
-
-MOST IMPORTANT:
-Dictionary m key or value kse likhte hn ye pta hona chaiye
-
-data = {
-    key: value
-}
-
-'''
