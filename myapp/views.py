@@ -36,3 +36,11 @@ def add_todo(request):
         
     return render(request, "add_todo.html")
 
+# ================================== DELETE TODO ===================================
+
+def delete_todo(request, todo_id):
+    
+    todo = Todo.objects.get(id = todo_id)
+    todo.delete()
+
+    return redirect("todo")
