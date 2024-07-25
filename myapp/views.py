@@ -44,3 +44,40 @@ def delete_todo(request, todo_id):
     todo.delete()
 
     return redirect("todo")
+
+# ================================== UPDATE TODO ==========================
+
+def update_todo(request, todo_id):
+    
+    todo = Todo.objects.get(id = todo_id)
+    
+    if request.method == "POST":
+        user_task = request.POST.get("task")
+        user_created_at = request.POST.get("created_at")
+        
+        todo.task = user_task
+        todo.created_at = user_created_at
+        
+        todo.save()
+        
+        return redirect("todo")
+    
+    parameters = {
+        'todo': todo
+    }
+    
+    return render(request, "update_todo.html", parameters)
+
+
+
+
+data = {
+    "Name": "DK",
+    "Age": 22,
+    "Course": "Pta ni kyu lia"
+}
+
+print(data.get("Name"))  # Read Opeation
+data["Gender"] = "Male"  # Create Operation
+
+data["Name"] = "DKoder"  # Update Operation
