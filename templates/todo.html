@@ -24,8 +24,10 @@
                     <td>{{ todo.task }}</td>
                     <td>{{ todo.created_at }}</td>
                     <td>
-                        <a href="{% url 'update_todo' todo.id %}" class="btn btn-success btn-sm">Update</a>
+                        <a href="{% url 'update_todo' todo.id %}" class="btn btn-warning btn-sm">Update</a>
                         <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        
+                        <a href="{% url 'mark_complete' todo.id %}" class="btn btn-outline-success btn-sm">Mark Complete</a>
                     </td>
                 </tr>
 

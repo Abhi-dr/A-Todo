@@ -29,7 +29,10 @@ def add_todo(request):
         user_created_at = request.POST.get("created_at")
         
         # View vala data model m save kr rha hu
-        new_todo = Todo(task=user_task, created_at=user_created_at)
+        new_todo = Todo(
+            task=user_task, 
+            created_at=user_created_at
+            )
         new_todo.save()
         
         return redirect("todo")
@@ -68,16 +71,19 @@ def update_todo(request, todo_id):
     
     return render(request, "update_todo.html", parameters)
 
+# ================================== MARK COMPLETE ================================
+
+def mark_complete(request, todo_id):
+    todo = Todo.objects.get(id = todo_id)
+    
+    todo.is_completed = True
+    todo.save()
+    
+    return redirect("todo")
+    
+    
+    
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
-
-data = {
-    "Name": "DK",
-    "Age": 22,
-    "Course": "Pta ni kyu lia"
-}
-
-print(data.get("Name"))  # Read Opeation
-data["Gender"] = "Male"  # Create Operation
-
-data["Name"] = "DKoder"  # Update Operation
+print(data) # kevl even numbers ki list print honi chaiye
