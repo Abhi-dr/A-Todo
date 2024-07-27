@@ -10,13 +10,13 @@ def home(request):
 
 def todo(request):
     
-    todos = Todo.objects.all()
+    todos = Todo.objects.filter(is_completed = False)
     
     parameters = {
-        "todos": todos,
+        "todos": todos, # isme koi bhi completed todo nhi h
     }
     
-    return render(request, "todo.html", parameters)
+    return render(request, "todo.html", parameters) # isme jo parameter ja rha h usme bhi koi completed todo nhi h
 
 # ===================================== ADD TODO =======================================
 
@@ -80,10 +80,4 @@ def mark_complete(request, todo_id):
     todo.save()
     
     return redirect("todo")
-    
-    
-    
-data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-print(data) # kevl even numbers ki list print honi chaiye
