@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Todo
+from .models import Todo, Profile
 
 # =================================== VIEWS HERE =========================
 
@@ -81,3 +81,20 @@ def mark_complete(request, todo_id):
     
     return redirect("todo")
 
+# ================================== UPLOAD PROFILE ===============================
+
+def upload_profile(request):
+    
+    if request.method == "POST":
+        profile_pic = request.FILES["profile_pic"]
+        
+        new_profile = Profile(
+            title="demo title",
+            profile_pic = profile_pic
+            )
+        
+        new_profile.save()
+        
+        return redirect("todo")
+    
+    return render(request, "upload_profile.html")
