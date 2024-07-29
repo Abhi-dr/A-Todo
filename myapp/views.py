@@ -98,3 +98,4 @@ def upload_profile(request):
         return redirect("todo")
     
     return render(request, "upload_profile.html")
+
