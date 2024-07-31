@@ -10,10 +10,15 @@ def home(request):
 
 def todo(request):
     
+    user = request.user
+    
+    print(user.username)
+    
     todos = Todo.objects.filter(is_completed = False)
     
     parameters = {
         "todos": todos, # isme koi bhi completed todo nhi h
+        "user": user
     }
     
     return render(request, "todo.html", parameters) # isme jo parameter ja rha h usme bhi koi completed todo nhi h
@@ -85,6 +90,8 @@ def mark_complete(request, todo_id):
 
 def upload_profile(request):
     
+    # student = Student.objects.get(id = user_id)
+    
     if request.method == "POST":
         profile_pic = request.FILES["profile_pic"]
         
@@ -97,5 +104,14 @@ def upload_profile(request):
         
         return redirect("todo")
     
-    return render(request, "upload_profile.html")
+    image = Profile.objects.get(id = 5)
+    
+    parameters = {
+        "image": image
+    }
+    
+    return render(request, "upload_profile.html", parameters)
+
+
+
 
