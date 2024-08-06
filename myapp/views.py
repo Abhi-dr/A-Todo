@@ -12,9 +12,7 @@ def todo(request):
     
     user = request.user
     
-    print(user.username)
-    
-    todos = Todo.objects.filter(is_completed = False)
+    todos = Todo.objects.filter(is_completed = False, user = user)
     
     parameters = {
         "todos": todos, # isme koi bhi completed todo nhi h
@@ -35,6 +33,7 @@ def add_todo(request):
         
         # View vala data model m save kr rha hu
         new_todo = Todo(
+            user = request.user,
             task=user_task, 
             created_at=user_created_at
             )
